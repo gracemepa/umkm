@@ -4,7 +4,7 @@
 	  <div class="navbar-header">
 		<ul class="nav navbar-nav flex-row position-relative">
 		  <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
-		  <li class="nav-item mr-auto"><a class="navbar-brand" href="index.html"><img class="brand-logo" alt="modern admin logo" src="../../../app-assets/images/logo/logo.png">
+		  <li class="nav-item mr-auto"><a class="navbar-brand" href="index.html"><img class="brand-logo" alt="modern admin logo" src="{{ asset('assets/images/logo/logo.png') }}">
 			  <h3 class="brand-text">Modern Admin</h3></a></li>
 		  <li class="nav-item d-none d-md-block nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="toggle-icon ft-toggle-right font-medium-3 white" data-ticon="ft-toggle-right"></i></a></li>
 		  <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="la la-ellipsis-v"></i></a></li>
@@ -19,7 +19,7 @@
 				<li class="col-md-2">
 				  <h6 class="dropdown-menu-header text-uppercase mb-1"><i class="la la-newspaper-o"></i> News</h6>
 				  <div id="mega-menu-carousel-example">
-					<div><img class="rounded img-fluid mb-1" src="../../../app-assets/images/slider/slider-2.png" alt="First slide"><a class="news-title mb-0" href="#">Poster Frame PSD</a>
+					<div><img class="rounded img-fluid mb-1" src="{{ asset('assets/images/slider/slider-2.png') }}"> alt="First slide"><a class="news-title mb-0" href="#">Poster Frame PSD</a>
 					  <p class="news-content"><span class="font-small-2">January 26, 2018</span></p>
 					</div>
 				  </div>
@@ -126,7 +126,7 @@
 			</li>
 		  </ul>
 		  <ul class="nav navbar-nav float-right">
-			<li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="mr-1">Hello,<span class="user-name text-bold-700">John Doe</span></span><span class="avatar avatar-online"><img src="../../../app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"><i></i></span></a>
+			<li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="mr-1">Hello,<span class="user-name text-bold-700">John Doe</span></span><span class="avatar avatar-online"><img src="{{ asset('assets/images/portrait/small/avatar-s-19.png') }}" alt="avatar"><i></i></span></a>
 			  <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="#"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="#"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="#"><i class="ft-message-square"></i> Chats</a>
 				<div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="ft-power"></i> Logout</a>
 			  </div>
@@ -188,7 +188,7 @@
 				</li>
 				<li class="scrollable-container media-list w-100"><a href="javascript:void(0)">
 					<div class="media">
-					  <div class="media-left"><span class="avatar avatar-sm avatar-online rounded-circle"><img src="../../../app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"><i></i></span></div>
+					  <div class="media-left"><span class="avatar avatar-sm avatar-online rounded-circle"><img src="{{ asset('assets/images/portrait/small/avatar-s-19.png') }}"> alt="avatar"><i></i></span></div>
 					  <div class="media-body">
 						<h6 class="media-heading">Margaret Govan</h6>
 						<p class="notification-text font-small-3 text-muted">I like your portfolio, let's start.</p><small>
@@ -196,7 +196,7 @@
 					  </div>
 					</div></a><a href="javascript:void(0)">
 					<div class="media">
-					  <div class="media-left"><span class="avatar avatar-sm avatar-busy rounded-circle"><img src="../../../app-assets/images/portrait/small/avatar-s-2.png" alt="avatar"><i></i></span></div>
+					  <div class="media-left"><span class="avatar avatar-sm avatar-busy rounded-circle"><img src="{{ asset('assets/images/portrait/small/avatar-s-2.png') }}"> alt="avatar"><i></i></span></div>
 					  <div class="media-body">
 						<h6 class="media-heading">Bret Lezama</h6>
 						<p class="notification-text font-small-3 text-muted">I have seen your work, there is</p><small>
@@ -204,7 +204,7 @@
 					  </div>
 					</div></a><a href="javascript:void(0)">
 					<div class="media">
-					  <div class="media-left"><span class="avatar avatar-sm avatar-online rounded-circle"><img src="../../../app-assets/images/portrait/small/avatar-s-3.png" alt="avatar"><i></i></span></div>
+					  <div class="media-left"><span class="avatar avatar-sm avatar-online rounded-circle"><img src="{{ asset('assets/images/portrait/small/avatar-s-3.png') }}"> alt="avatar"><i></i></span></div>
 					  <div class="media-body">
 						<h6 class="media-heading">Carie Berra</h6>
 						<p class="notification-text font-small-3 text-muted">Can we have call in this week ?</p><small>
@@ -212,7 +212,7 @@
 					  </div>
 					</div></a><a href="javascript:void(0)">
 					<div class="media">
-					  <div class="media-left"><span class="avatar avatar-sm avatar-away rounded-circle"><img src="../../../app-assets/images/portrait/small/avatar-s-6.png" alt="avatar"><i></i></span></div>
+					  <div class="media-left"><span class="avatar avatar-sm avatar-away rounded-circle"><img src="{{ asset('assets/images/portrait/small/avatar-s-6.png') }}"> alt="avatar"><i></i></span></div>
 					  <div class="media-body">
 						<h6 class="media-heading">Eric Alsobrook</h6>
 						<p class="notification-text font-small-3 text-muted">We have project party this saturday.</p><small>
