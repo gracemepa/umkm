@@ -13,9 +13,9 @@ class DashboardController_admin extends Controller
     public function index()
     {
         // Mengambil data yang ingin ditampilkan di dashboard, misalnya daftar produk atau statistik
-        $totalProduk = Produk::count();
-        $produkTerbaru = Produk::latest()->take(5)->get();
+        // $totalProduk = Produk::count();
+        // $produkTerbaru = Produk::latest()->take(5)->get();
 
-        return view('dashboard_admin.index', compact('totalProduk', 'produkTerbaru'));
+        return view('layouts.admin.dashboard', );//compact('totalProduk', 'produkTerbaru'
     }
 }

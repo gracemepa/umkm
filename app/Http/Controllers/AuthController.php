@@ -28,7 +28,18 @@ class AuthController extends Controller
         // Mencoba login dengan kredensial
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             $request->session()->regenerate();
-            return redirect()->intended('dashboard');
+            
+            // Mengambil data pengguna yang sedang login
+            $user = Auth::user();
+            
+            // Cek role pengguna
+            if ($user->role === 'owner') {
+                // Arahkan ke dashboard admin
+                return redirect()->route('admin.dashboard');
+            } else {
+                // Arahkan ke dashboard user
+                return redirect()->route('user.dashboard');
+            }
         }
 
         // Jika login gagal, kembali dengan error
@@ -55,8 +66,9 @@ class AuthController extends Controller
             'password' => 'required|min:6|max:12',
         ]);
 
+        // Enkripsi password dan set role default
         $validatedData['password'] = Hash::make($validatedData['password']);
-        $validatedData['role'] = 'owner';
+        $validatedData['role'] = 'user'; // Default role user, bisa diganti menjadi 'admin' jika dibutuhkan
         User::create($validatedData);
 
         // Redirect ke halaman login dengan pesan sukses
