@@ -207,7 +207,8 @@
 			</a>
 		</li>
 				  </li>
-          <li class=" nav-item"><a href={{"create"}}><i class="la la-shopping-cart"></i><span class="menu-title" data-i18n="">Tambah Admin</span></a>
+          <li class=" nav-item"><a href={{"../create"}}><i class="la la-shopping-cart"></i><span class="menu-title" data-i18n="">Tambah Admin</span></a>
+			<li class=" nav-item"><a href="{{ route('admin.produk.index')}}"><i class="la la-shopping-cart"></i><span class="menu-title" data-i18n="">Tambah Produk</span></a>
           </li>
         </ul>
       </div>

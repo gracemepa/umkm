@@ -25,7 +25,7 @@ class KategoriController extends Controller
         ]);
 
         Kategori::create($request->all());
-        return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil ditambahkan.');
+        return redirect()->route('layouts.admin.kategori.index')->with('success', 'Kategori berhasil ditambahkan.');
     }
 
     public function edit($id)

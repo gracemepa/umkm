@@ -43,22 +43,22 @@ Route::prefix('user')->middleware('auth')->group(function () {
 
 // Route untuk Kategori
 Route::prefix('admin/kategori')->controller(KategoriController::class)->group(function () {
-    Route::get('index',         'index')->name('admin.kategori.index');
-    Route::get('create',        'create')->name('admin.kategori.create');
-    Route::post('store',        'store')->name('admin.kategori.store');
-    Route::get('edit/{id}',     'edit')->name('admin.kategori.edit');
-    Route::post('update/{id}',  'update')->name('admin.kategori.update');
-    Route::delete('delete/{id}',   'delete')->name('admin.kategori.delete');
+    Route::get('/index',         'index')->name('admin.kategori.index');
+    Route::get('/create',        'create')->name('admin.kategori.create');
+    Route::post('/store',        'store')->name('admin.kategori.store');
+    Route::get('/edit/{id}',     'edit')->name('admin.kategori.edit');
+    Route::post('/update/{id}',  'update')->name('admin.kategori.update');
+    Route::delete('/delete/{id}',   'delete')->name('admin.kategori.delete');
 });
 
 
 
-Route::prefix('produk')->controller(ProdukController::class)->group(function () {
-        Route::get('index',         'index')->name('dashboard.produk.index');
-        Route::get('create',        'create')->name('dashboard.produk.create');
-        Route::post('store',        'store')->name('dashboard.produk.store');
-        Route::get('edit/{id}',     'edit')->name('dashboard.produk.edit');
-        Route::post('update/{id}',  'update')->name('dashboard.produk.update');
-        Route::get('delete/{id}',   'delete')->name('dashboard.produk.delete');
+Route::prefix('admin/produk')->controller(ProdukController::class)->group(function () {
+        Route::get('index',         'index')->name('admin.produk.index');
+        Route::get('create',        'create')->name('admin.produk.create');
+        Route::post('store',        'store')->name('admin.produk.store');
+        Route::get('edit/{id}',     'edit')->name('admin.produk.edit');
+        Route::post('update/{id}',  'update')->name('admin.produk.update');
+        Route::get('delete/{id}',   'delete')->name('admin.produk.delete');
     });
 
