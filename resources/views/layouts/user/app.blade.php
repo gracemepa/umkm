@@ -641,31 +641,255 @@
 		</div>
 	</div>
 </div>
-          </div>
-        </div>
-        <div class="sidebar-detached sidebar-left">
-          <div class="sidebar"><div class="sidebar-content d-none d-lg-block sidebar-shop">
-    <div class="card">
-        <div class="card-body">
-            <div class="search">
-                <input id="basic-search" type="text" placeholder="Search here..." class="basic-search">
-                <i class="ficon ft-search"></i>
-            </div>
-        </div>
-    </div>
+
+
 </div>
-          </div>
-        </div>
-      </div>
-    </div>
+</div>
+<div class="sidebar-detached sidebar-left">
+  <div class="sidebar"><div class="sidebar-content d-none d-lg-block sidebar-shop">
+<div class="card">
+<div class="card-body">
+	<div class="search">
+		<input id="basic-search" type="text" placeholder="Search here..." class="basic-search">
+		<i class="ficon ft-search"></i>
+	</div>
+</div>
+</div>
+<div class="card">
+<div class="card-body">
+	<div class="categories-list">
+		<div class="category-title pb-1">
+			<h4 class="card-title mb-0">Categories</h4>
+			<hr>
+		</div>
+		<div class="product-cat" id="categories">
+			<ul class="treeview">
+				<li><span>Watches</span>
+					<ul>
+						<li><span>Apple Watch</span></li>
+						<li><span>Fitbit</span></li>
+					</ul>
+				</li>
+				<li><span>Tablets</span>
+					<ul>
+						<li><span>iPad</span></li>
+						<li><span>iPad Pro</span></li>
+					</ul>
+				</li>
+				<li class="open"><span>Laptops</span>
+					<ul>
+						<li class="active"><span>Mac</span></li>
+						<li><span>Mac Pro</span></li>
+					</ul>
+				</li>
+				<li><span>Phone</span>
+					<ul>
+						<li><span>iPhone 9</span></li>
+						<li><span>iPhone X</span></li>
+						<li><span>iPhone Pro</span></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /Categories List -->
 
-</main>
-    <!-- ////////////////////////////////////////////////////////////////////////////-->
+	<!-- /Price Range -->
+	<div class="price-range">
+		<div class="category-title mt-3 pb-1">
+			<h4 class="card-title mb-0">Price</h4>
+			<hr>
+		</div>
+		<div class="price-slider">
+			<div class="price_slider_amount mb-2">
+				<div class="range-amt"><strong>Price Range : </strong> <span class="range-val" id="lower-value"></span>
+					- <span class="range-val" id="upper-value"></span></div>
+			</div>
+			<div class="form-group">
+				<div class="slider-sm slider-success my-1" id="small-slider"></div>
+			</div>
+		</div>
+	</div>
+	<!-- /Price Range -->
 
 
-    <footer class="footer footer-static footer-light navbar-border navbar-shadow">
-      <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span class="float-md-left d-block d-md-inline-block">Copyright  &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span></p>
-    </footer>
+	<!-- Striped Progress sample -->
+	<div class="size">
+		<div class="category-title mt-3 pb-1">
+			<h4 class="card-title mb-0">Size</h4>
+			<hr>
+		</div>
+		<div class="size-filter">
+			<ul>
+				<li><a href="#">XL</a></li>
+				<li><a href="#">L</a></li>
+				<li class="active"><a href="#">M</a></li>
+				<li><a href="#">S</a></li>
+				<li><a href="#">XS</a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- /Striped Progress sample -->
+
+	<!-- Color Options -->
+	<div class="color-filter">
+		<div class="category-title mt-3 pb-1">
+			<h4 class="card-title mb-0">Color</h4>
+			<hr>
+		</div>
+		<div class="sidebar-list">
+			<ul class="skin-square skin">
+				<li>
+					<input type="checkbox" class="white" id="color-white">
+					<label for="color-white">
+						<a href="#">
+							<span class="color-info white"></span>
+							White <span class="count">(4)</span>
+						</a>
+					</label>
+				</li>
+				<li>
+					<input type="checkbox" class="black" id="color-black">
+					<label for="color-black">
+						<a href="#">
+							<span class="color-info black"></span>
+							Black <span class="count">(5)</span>
+						</a>
+					</label>
+				</li>
+				<li>
+					<input type="checkbox" class="amber" id="color-amber">
+					<label for="color-amber">
+						<a href="#">
+							<span class="color-info amber"></span>
+							Amber <span class="count">(6)</span>
+						</a>
+					</label>
+				</li>
+				<li>
+					<input type="checkbox" class="blue" id="color-blue">
+					<label for="color-blue">
+						<a href="#">
+							<span class="color-info blue"></span>
+							Blue <span class="count">(3)</span>
+						</a>
+					</label>
+				</li>
+				<li>
+					<input type="checkbox" class="success" id="color-success">
+					<label for="color-success">
+						<a href="#">
+							<span class="color-info success"></span>
+							Green <span class="count">(1)</span>
+						</a>
+					</label>
+				</li>
+				<li>
+					<input type="checkbox" class="pink" id="color-pink">
+					<label for="color-pink">
+						<a href="#">
+							<span class="color-info pink"></span>
+							Pink <span class="count">(2)</span>
+						</a>
+					</label>
+				</li>
+				<li>
+					<input type="checkbox" class="yellow" id="color-yellow">
+					<label for="color-yellow">
+						<a href="#">
+							<span class="color-info yellow"></span>
+							Yellow <span class="count">(5)</span>
+						</a>
+					</label>
+				</li>
+				<li>
+					<input type="checkbox" class="teal" id="color-teal">
+					<label for="color-teal">
+						<a href="#">
+							<span class="color-info teal"></span>
+							Teal <span class="count">(3)</span>
+						</a>
+					</label>
+				</li>
+				<li>
+					<input type="checkbox" class="red" id="color-red">
+					<label for="color-red">
+						<a href="#">
+							<span class="color-info red"></span>
+							Red <span class="count">(3)</span>
+						</a>
+					</label>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /Color Options -->
+
+	<!-- Brands -->
+	<div class="brands">
+		<div class="category-title mt-3 pb-1">
+			<h4 class="card-title mb-0">Brands</h4>
+			<hr>
+		</div>
+		<div class="search-box">
+			<input id="brandInput" type="text" placeholder="Search Brand" class="product-search">
+			<i class="ficon ft-search"></i>
+		</div>
+		<div class="sidebar-list" id="brands">
+			<ul class="skin-square skin">
+				<li><input type="checkbox" class="apple" id="apple"><label for="apple"> <a href="#">Apple <span
+								class="count">(4)</span></a></label></li>
+				<li><input type="checkbox" class="lenovo" id="lenovo"><label for="lenovo"> <a href="#"> Lenovo
+							<span class="count">(5)</span></a></label></li>
+				<li><input type="checkbox" class="fitbit" id="fitbit"><label for="fitbit"><a href="#"> Fitbit
+							<span class="count">(6)</span></a></label></li>
+				<li><input type="checkbox" class="samsung" id="samsung"><label for="samsung"><a href="#">
+							Samsung <span class="count">(3)</span></a></label></li>
+				<li><input type="checkbox" class="garmin" id="garmin"><label for="garmin"><a href="#"> Garmin
+							<span class="count">(7)</span></a></label></li>
+				<li><input type="checkbox" class="fossil" id="fossil"><label for="fossil"><a href="#"> Fossil
+							<span class="count">(8)</span></a></label></li>
+				<li><input type="checkbox" class="sony" id="sony"><label for="sony"><a href="#"> Sony <span
+								class="count">(5)</span></a></label></li>
+				<li><input type="checkbox" class="htc" id="htc"><label for="htc"><a href="#"> HTC <span class="count">(10)</span></a></label></li>
+				<li><input type="checkbox" class="microsft" id="microsft"><label for="microsft"><a href="#">
+							Microsft <span class="count">(11)</span></a></label></li>
+				<li><input type="checkbox" class="google" id="google"><label for="google"><a href="#"> Google
+							<span class="count">(9)</span></a></label></li>
+				<li><input type="checkbox" class="xaomi" id="xaomi"><label for="xaomi"><a href="#"> Xaomi <span
+								class="count">(8)</span></a></label></li>
+			</ul>
+		</div>
+	</div>
+	<!-- /Brand -->
+
+	<!-- Featured Image -->
+	<div class="featured">
+		<div class="category-title mt-3 pb-1">
+			<h4 class="card-title mb-0">Featured</h4>
+			<hr>
+		</div>
+		<div class="featured-image bg-success bg-lighten-2">
+			<a href="ecommerce-product-detail.html">
+				<div class="badge badge-danger">Best Deal</div>
+				<img src="../../../app-assets/images/elements/samsung-gear.png" alt="">
+			</a>
+		</div>
+	</div>
+	<!-- /Featured Image -->
+</div>
+</div>
+</div>
+  </div>
+</div>
+</div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+
+
+<footer class="footer footer-static footer-light navbar-border navbar-shadow">
+<p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span class="float-md-left d-block d-md-inline-block">Copyright  &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span></p>
+</footer>
 
     <!-- BEGIN VENDOR JS-->
     <script src="{{ asset('assets/vendors/js/vendors.min.jpg') }}"></script>

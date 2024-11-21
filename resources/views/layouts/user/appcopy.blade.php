@@ -33,6 +33,7 @@
     <!-- END Custom CSS-->
   </head>
   <body class="vertical-layout vertical-menu-modern content-detached-left-sidebar   menu-expanded fixed-navbar" data-open="click" data-menu="vertical-menu-modern" data-col="content-detached-left-sidebar">
+
     
     <!-- fixed-top-->
     <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-dark navbar-shadow">
@@ -167,18 +168,22 @@
                   <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="ft-power"></i> Logout</a>
                 </div>
               </li>
-				{{-- logout --}}
-				<li class="nav-item">
-					<a class="nav-link" href="{{ route('logout') }}" 
-					onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-						<i class="fa-solid fa-right-from-bracket"></i> Logout
-					</a>
-				</li>
-
-				<!-- Formulir untuk logout, disembunyikan agar tidak terlihat oleh pengguna -->
-				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-					@csrf
-				</form>
+              <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-gb"></i><span class="selected-language"></span></a>
+                <div class="dropdown-menu" aria-labelledby="dropdown-flag"><a class="dropdown-item" href="#"><i class="flag-icon flag-icon-gb"></i> English</a><a class="dropdown-item" href="#"><i class="flag-icon flag-icon-fr"></i> French</a><a class="dropdown-item" href="#"><i class="flag-icon flag-icon-cn"></i> Chinese</a><a class="dropdown-item" href="#"><i class="flag-icon flag-icon-de"></i> German</a></div>
+              </li>
+               {{-- logout --}}
+			   <li class="nav-item">
+				<a class="nav-link" href="{{ route('logout') }}" 
+				   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+					<i class="fa-solid fa-right-from-bracket"></i> Logout
+				</a>
+			</li>
+			
+			<!-- Formulir untuk logout, disembunyikan agar tidak terlihat oleh pengguna -->
+			<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+				@csrf
+			</form>
+		
             </ul>
           </div>
         </div>
@@ -189,58 +194,22 @@
 
 <main>
 	@yield('content')
-	<div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
-		<div class="main-menu-content">
-			<ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-				<li class="nav-item {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}">
-					<a href="{{ route('admin.dashboard') }}">
-						<i class="la la-home"></i>
-						<span class="menu-title" data-i18n="">Dashboard</span>
-					</a>
-				</li>
-				<li class="navigation-header">
-					<span data-i18n="nav.category.ecommerce">Ecommerce</span>
-					<i class="undefined ft-minus" data-toggle="tooltip" data-placement="right" data-original-title="Ecommerce"></i>
-				</li>
-				<li class="nav-item {{ Request::is('shop') ? 'active' : '' }}">
-					<a href="ecommerce-product-shop.html">
-						<i class="la la-th-large"></i>
-						<span class="menu-title" data-i18n="">Shop</span>
-					</a>
-				</li>
-				<li class="nav-item {{ Request::is('product-detail') ? 'active' : '' }}">
-					<a href="{{ route('admin.produkdetail.index') }}">
-						<i class="la la-list"></i>
-						<span class="menu-title" data-i18n="">Product Detail</span>
-					</a>
-				</li>
-				<li class="nav-item {{ Request::routeIs('admin.kategori.*') ? 'active' : '' }}">
-					<a href="{{ route('admin.kategori.index') }}">
-						<i class="la la-shopping-cart"></i>
-						<span class="menu-title" data-i18n="">Kategori Barang</span>
-					</a>
-				</li>
-				<li class="nav-item {{ Request::routeIs('admin.produk.*') ? 'active' : '' }}">
-				  <a href="{{ route('admin.produk.index') }}">
-					  <i class="la la-shopping-cart"></i>
-					  <span class="menu-title" data-i18n="">Produk</span>
-				  </a>
-			  </li>
-			  <li class="nav-item {{ Request::routeIs('admin.barangmasuk.*') ? 'active' : '' }}">
-				<a href="{{ route('admin.barangmasuk.index') }}">
-					<i class="la la-inbox"></i>
-					<span class="menu-title" data-i18n="">Barang Masuk</span>
-				</a>
-			</li>
-				<li class="nav-item {{ Request::is('create-admin') ? 'active' : '' }}">
-					<a href="../create">
-						<i class="la la-user-plus"></i>
-						<span class="menu-title" data-i18n="">Tambah Admin</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
+    <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
+      <div class="main-menu-content">
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+          <li class=" nav-item"><a href="index.html"><i class="la la-home"></i><span class="menu-title" data-i18n="">eCommerce Dashboard</span></a>
+          </li>
+          <li class=" navigation-header"><span data-i18n="nav.category.ecommerce">Ecommerce</span><i class="undefined ft-minus" data-toggle="tooltip" data-placement="right" data-original-title="Ecommerce"></i>
+          </li>
+          <li class="active"><a href="ecommerce-product-shop.html"><i class="la la-th-large"></i><span class="menu-title" data-i18n="">Shop</span></a>
+          </li>
+          <li class=" nav-item"><a href="ecommerce-product-detail.html"><i class="la la-list"></i><span class="menu-title" data-i18n="">Product Detail</span></a>
+          </li>
+          <li class=" nav-item"><a href="ecommerce-shopping-cart.html"><i class="la la-shopping-cart"></i><span class="menu-title" data-i18n="">Shopping Cart</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
     <div class="app-content content">
       <div class="content-wrapper">

@@ -7,8 +7,8 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\DashboardController_admin;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KategoriController;
-
-
+use App\Http\Controllers\BarangmasukController;
+use App\Http\Controllers\ProdukdetailController;
 
 // Route default dashboard setelah login
 Route::get('/', function () {
@@ -28,16 +28,14 @@ Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController_admin::class, 'index'])->name('admin.dashboard');
     Route::get('/create', [AdminController::class, 'create'])->name('admin.create');
     Route::post('/store', [AdminController::class, 'store'])->name('admin.store');
-
-       // Edit, Update, dan Delete Admin
-       Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
-       Route::put('/update/{id}', [AdminController::class, 'update'])->name('admin.update');
-       Route::delete('/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
+    Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
+    Route::put('/update/{id}', [AdminController::class, 'update'])->name('admin.update');
+    Route::delete('/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
 });
 
 
 Route::prefix('user')->middleware('auth')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
     
 });
 
@@ -47,18 +45,35 @@ Route::prefix('admin/kategori')->controller(KategoriController::class)->group(fu
     Route::get('/create',        'create')->name('admin.kategori.create');
     Route::post('/store',        'store')->name('admin.kategori.store');
     Route::get('/edit/{id}',     'edit')->name('admin.kategori.edit');
-    Route::post('/update/{id}',  'update')->name('admin.kategori.update');
-    Route::delete('/delete/{id}',   'delete')->name('admin.kategori.delete');
+    Route::put('/update/{id}',   'update')->name('admin.kategori.update');
+    Route::delete('/delete/{id}','delete')->name('admin.kategori.delete');
 });
 
 
-
 Route::prefix('admin/produk')->controller(ProdukController::class)->group(function () {
-        Route::get('index',         'index')->name('admin.produk.index');
-        Route::get('create',        'create')->name('admin.produk.create');
-        Route::post('store',        'store')->name('admin.produk.store');
-        Route::get('edit/{id}',     'edit')->name('admin.produk.edit');
-        Route::post('update/{id}',  'update')->name('admin.produk.update');
-        Route::get('delete/{id}',   'delete')->name('admin.produk.delete');
-    });
+    Route::get('index',         'index')->name('admin.produk.index');
+    Route::get('create',        'create')->name('admin.produk.create');
+    Route::post('store',        'store')->name('admin.produk.store');
+    Route::get('edit/{id}',     'edit')->name('admin.produk.edit');
+    Route::put('update/{id}',   'update')->name('admin.produk.update');
+    Route::delete('delete/{id}', 'delete')->name('admin.produk.delete'); // Changed to DELETE
+});
 
+Route::prefix('admin/produkdetail')->controller(ProdukdetailController::class)->group(function () {
+    Route::get('index',         'index')->name('admin.produkdetail.index');
+    Route::get('create',        'create')->name('admin.produkdetail.create');
+    Route::post('store',        'store')->name('admin.produkdetail.store');
+    Route::get('edit/{id}',     'edit')->name('admin.produkdetail.edit');
+    Route::put('update/{id}',   'update')->name('admin.produkdetail.update');
+    Route::delete('delete/{id}','delete')->name('admin.produkdetail.delete');
+
+});
+
+Route::prefix('admin/barangmasuk')->controller(BarangmasukController::class)->group(function () {
+    Route::get('index', 'index')->name('admin.barangmasuk.index');
+    Route::get('create', 'create')->name('admin.barangmasuk.create');
+    Route::post('store', 'store')->name('admin.barangmasuk.store');
+    Route::get('edit/{id}', 'edit')->name('admin.barangmasuk.edit');
+    Route::put('update/{id}', 'update')->name('admin.barangmasuk.update');
+    Route::delete('delete/{id}', 'delete')->name('admin.barangmasuk.delete');
+});

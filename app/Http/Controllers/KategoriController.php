@@ -12,10 +12,10 @@ class KategoriController extends Controller
         $kategoris = Kategori::all();  // Mengambil data kategori
         return view('layouts.admin.kategori.index', compact('kategoris'));
     }
-    
+
     public function create()
     {
-        return view('admin.kategori.create');
+        return view('layouts.admin.kategori.create'); // Pastikan file view ini ada
     }
 
     public function store(Request $request)
@@ -24,46 +24,43 @@ class KategoriController extends Controller
             'nama_kategori' => 'required|string|max:255',
         ]);
 
-        Kategori::create($request->all());
-        return redirect()->route('layouts.admin.kategori.index')->with('success', 'Kategori berhasil ditambahkan.');
+        // Simpan data ke database
+        Kategori::create([
+            'nama_kategori' => $request->nama_kategori,
+        ]);
+
+        return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil ditambahkan.');
     }
 
     public function edit($id)
     {
-        $kategori = Kategori::find($id);
-    
-        if (!$kategori) {
-            return redirect()->route('admin.kategori.index')->with('error', 'Kategori tidak ditemukan.');
-        }
-    
-        return view('layouts.admin.kategori.edit', compact('kategori'));
+        $kategori = Kategori::findOrFail($id);
+
+        return view('layouts.admin.kategori.edit', compact('kategori')); // Pastikan file view ini ada
     }
-    
+
     public function update(Request $request, $id)
     {
         $request->validate([
             'nama_kategori' => 'required|string|max:255',
         ]);
 
-        $kategori = Kategori::find($id);
+        $kategori = Kategori::findOrFail($id);
 
-        if (!$kategori) {
-            return redirect()->route('admin.kategori.index')->with('error', 'Kategori tidak ditemukan.');
-        }
+        // Perbarui data kategori
+        $kategori->update([
+            'nama_kategori' => $request->nama_kategori,
+        ]);
 
-        $kategori->update($request->all());
         return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil diperbarui.');
     }
 
     public function delete($id)
     {
-        $kategori = Kategori::where('id_kategori', $id)->first();
-        
-        if ($kategori) {
-            $kategori->delete();
-            return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil dihapus.');
-        }
+        $kategori = Kategori::findOrFail($id);
 
-        return redirect()->route('admin.kategori.index')->with('error', 'Kategori tidak ditemukan.');
+        $kategori->delete();
+
+        return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil dihapus.');
     }
 }

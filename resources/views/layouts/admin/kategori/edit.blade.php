@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.admin.appcopy')
 
 @section('content')
     <!-- Menu Sidebar -->
@@ -25,20 +25,27 @@
                 <!-- Kategori Form -->
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
+                        <div class="card shadow rounded">
+                            <div class="card-header bg-primary text-white">
                                 <h4 class="card-title">Edit Informasi Kategori</h4>
                             </div>
                             <div class="card-body">
+                                @if(session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
                                 <form action="{{ route('admin.kategori.update', $kategori->id_kategori) }}" method="POST">
                                     @csrf
-                                    @method('POST')
+                                    @method('PUT') <!-- Menggunakan method PUT untuk update -->
                                     <div class="form-group">
                                         <label for="nama_kategori">Nama Kategori</label>
-                                        <input type="text" id="nama_kategori" name="nama_kategori" class="form-control" value="{{ $kategori->nama_kategori }}" required>
+                                        <input type="text" id="nama_kategori" name="nama_kategori" class="form-control" value="{{ old('nama_kategori', $kategori->nama_kategori) }}" required>
                                     </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary">Update Kategori</button>
+                                    <div class="form-group text-right">
+                                        <button type="submit" class="btn btn-success btn-primary">
+                                            <i class="fa fa-save"></i> Update Kategori
+                                        </button>
                                     </div>
                                 </form>
                             </div>

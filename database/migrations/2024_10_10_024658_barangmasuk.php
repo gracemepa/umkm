@@ -16,13 +16,14 @@ return new class extends Migration
             $table->unsignedBigInteger('id_supplier')->nullable();
             $table->date('tgl_masuk')->nullable();
             $table->decimal('total', 10, 2)->nullable();
-        
+            $table->decimal('harga_beli', 10, 2)->nullable(); // Menambahkan kolom harga_beli
+            $table->decimal('subtotal', 10, 2)->nullable();  // Menambahkan kolom subtotal
+
             // Foreign Key
             $table->foreign('id_supplier')->references('id_suplier')->on('supplier')->onDelete('no action')->onUpdate('no action');
-        
+
             $table->timestamps();
         });
-        
     }
 
     /**
@@ -33,3 +34,4 @@ return new class extends Migration
         Schema::dropIfExists('barangmasuk');
     }
 };
+

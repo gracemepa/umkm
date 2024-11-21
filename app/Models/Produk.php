@@ -9,9 +9,17 @@ class Produk extends Model
 {
     use HasFactory;
 
-    // Menentukan nama tabel jika tidak menggunakan plural default
-    protected $table = 'produk';
-    protected $primaryKey = 'id_produk';
-    // Tentukan kolom yang dapat diisi
-    protected $fillable = ['nama_produk', 'harga_jual', 'stok', 'gambar'];
+    protected $table = 'produk'; 
+
+    protected $primaryKey = 'id_produk'; 
+
+    // Tambahkan 'harga_jual' dan 'gambar' ke dalam $fillable
+    protected $fillable = [
+        'nama_produk', 'harga_jual', 'stok', 'gambar' // Menambahkan 'harga_jual' dan 'gambar'
+    ];
+
+    public function produkDetails()
+    {
+        return $this->hasMany(Produkdetail::class, 'id_produk');
+    }
 }

@@ -12,17 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('produk', function (Blueprint $table) {
-            $table->string('gambar')->nullable()->after('stok'); // Menambahkan kolom gambar setelah kolom stok
+            // Check if the 'gambar' column doesn't exist
+            if (!Schema::hasColumn('produk', 'gambar')) {
+                $table->string('gambar')->nullable()->after('stok');
+            }
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
+    
     public function down(): void
     {
         Schema::table('produk', function (Blueprint $table) {
-            $table->dropColumn('gambar'); // Menghapus kolom gambar jika rollback
+            $table->dropColumn('gambar');
         });
     }
+    
 };

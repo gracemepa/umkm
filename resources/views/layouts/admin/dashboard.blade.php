@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.admin.appcopy')
 
 @section('content')
     <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
