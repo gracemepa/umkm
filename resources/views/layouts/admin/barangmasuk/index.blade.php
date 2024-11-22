@@ -52,11 +52,11 @@
                                                 <td>{{ number_format($barangmasuk->subtotal, 0, ',', '.') }}</td>
                                                 <td>
                                                     @if ($barangmasuk->gambar)
-                                                        <img src="{{ asset($barangmasuk->gambar) }}" alt="Gambar Barang" style="width: 100px; height: 100px; object-fit: cover;">
+                                                        <img src="{{ asset($barangmasuk->gambar) }}" alt="Gambar Barang" class="img-fluid" style="max-width: 100px; max-height: 100px; object-fit: contain;">
                                                     @else
                                                         Tidak ada gambar
                                                     @endif
-                                                </td>
+                                                </td>                                                
                                                 <td>
                                                     <a href="{{ route('admin.barangmasuk.edit', $barangmasuk->id_barangmasuk) }}" class="btn btn-warning btn-sm">
                                                         <i class="fa fa-pencil-alt"></i> Edit

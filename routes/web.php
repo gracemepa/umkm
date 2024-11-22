@@ -9,6 +9,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\BarangmasukController;
 use App\Http\Controllers\ProdukdetailController;
+use App\Http\Controllers\ProdukUserController;
+use App\Http\Controllers\KategoriUserController;
+use App\Http\Controllers\ProdukdetailUserController;
 
 // Route default dashboard setelah login
 Route::get('/', function () {
@@ -77,3 +80,17 @@ Route::prefix('admin/barangmasuk')->controller(BarangmasukController::class)->gr
     Route::put('update/{id}', 'update')->name('admin.barangmasuk.update');
     Route::delete('delete/{id}', 'delete')->name('admin.barangmasuk.delete');
 });
+
+
+
+// R O U T E S     U S E R
+
+Route::prefix('user/produk')->controller(ProdukUserController::class)->group(function () {
+    Route::get('index', 'index')->name('user.produk.index'); 
+});
+
+Route::prefix('user/produk')->controller(KategoriUserController::class)->group(function () {
+    Route::get('index', 'index')->name('user.produk.index'); 
+});
+
+Route::get('user/produk/detail/{id_produk}', [ProdukdetailUserController::class, 'show'])->name('user.produk.detail');

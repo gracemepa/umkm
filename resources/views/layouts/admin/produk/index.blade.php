@@ -48,7 +48,7 @@
                                                 <td>{{ $produk->stok }}</td>
                                                 <td>
                                                     @if ($produk->gambar)
-                                                        <img src="{{ asset($produk->gambar) }}" alt="Gambar Produk" style="width: 100px; height: 100px; object-fit: cover;">
+                                                    <img src="{{ asset($produk->gambar) }}" alt="Gambar Produk" style="max-width: 100px; max-height: 100px; width: auto; height: auto;">
                                                     @else
                                                         Tidak ada gambar
                                                     @endif

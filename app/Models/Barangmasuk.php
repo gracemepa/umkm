@@ -17,7 +17,6 @@ class Barangmasuk extends Model
         return Carbon::parse($value);
     }
 
-
     public function getSubtotalAttribute()
     {
         return $this->harga_beli * $this->total;

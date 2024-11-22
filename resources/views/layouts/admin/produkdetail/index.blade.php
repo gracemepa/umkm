@@ -32,25 +32,25 @@
                                     <thead class="thead-dark">
                                         <tr>
                                             <th style="width: 5%;">No</th>
-                                            <th style="width: 25%;">Nama Produk</th>
+                                            <th style="width: 20%;">Nama Produk</th>
                                             <th style="width: 30%;">Deskripsi</th>
-                                            <th style="width: 25%;">Spesifikasi</th>
+                                            <th style="width: 30%;">Spesifikasi</th>
                                             <th style="width: 15%;">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse($produkdetails as $index => $produkdetail)
                                             <tr>
-                                                <td>{{ $index + 1 }}</td> <!-- Nomor urut -->
-                                                <td>{{ $produkdetail->produk->nama_produk }}</td> <!-- Nama produk -->
-                                                <td>{{ $produkdetail->deskripsi }}</td> <!-- Deskripsi -->
-                                                <td>{{ $produkdetail->spesifikasi }}</td> <!-- Spesifikasi -->
+                                                <td>{{ $index + 1 }}</td>
+                                                <td>{{ $produkdetail->produk->nama_produk }}</td>
+                                                <td>{{ $produkdetail->deskripsi }}</td>
+                                                <td>{{ $produkdetail->spesifikasi }}</td>
                                                 <td>
                                                     <!-- Tombol Edit -->
                                                     <a href="{{ route('admin.produkdetail.edit', $produkdetail->id_produkdetail) }}" class="btn btn-warning btn-sm">
                                                         <i class="fa fa-pencil-alt"></i> Edit
                                                     </a>
-
+                                    
                                                     <!-- Tombol Delete -->
                                                     <form action="{{ route('admin.produkdetail.delete', $produkdetail->id_produkdetail) }}" method="POST" style="display:inline;">
                                                         @csrf
@@ -59,7 +59,6 @@
                                                             <i class="fa fa-trash-alt"></i> Delete
                                                         </button>
                                                     </form>
-                                                    
                                                 </td>
                                             </tr>
                                         @empty
@@ -68,6 +67,7 @@
                                             </tr>
                                         @endforelse
                                     </tbody>
+                                    
                                 </table>
                             </div>
                         </div>

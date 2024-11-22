@@ -187,8 +187,13 @@
 
     <!-- ////////////////////////////////////////////////////////////////////////////-->
 
-    <main>
-      @yield('content')
+
+
+
+
+
+<main>
+@yield('content')
 <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
@@ -210,21 +215,21 @@
           </li>
           <li class="nav-item {{ Request::routeIs('admin.kategori.*') ? 'active' : '' }}">
             <a href="{{ route('admin.kategori.index') }}">
-                <i class="la la-th-large"></i> <!-- Ikon untuk kategori -->
+                <i class="la la-th-large"></i> 
                 <span class="menu-title" data-i18n="">Kategori Barang</span>
             </a>
         </li>
         
         <li class="nav-item {{ Request::routeIs('admin.produk.*') ? 'active' : '' }}">
             <a href="{{ route('admin.produk.index') }}">
-                <i class="la la-cube"></i> <!-- Ikon untuk produk -->
+                <i class="la la-cube"></i> 
                 <span class="menu-title" data-i18n="">Produk</span>
             </a>
         </li>
         
         <li class="nav-item {{ Request::routeIs('admin.produkdetail.*') ? 'active' : '' }}">
             <a href="{{ route('admin.produkdetail.index') }}">
-                <i class="la la-shopping-cart"></i> <!-- Ikon untuk produk detail -->
+              <i class="ft-file-text"></i>
                 <span class="menu-title" data-i18n="">Produk Detail</span>
             </a>
         </li>
