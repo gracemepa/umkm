@@ -39,9 +39,11 @@
                                         <select id="id_produk" name="id_produk" class="form-control rounded" required>
                                             <option value="" disabled selected>Pilih Produk</option>
                                             @foreach ($produks as $produk)
-                                                <option value="{{ $produk->id_produk }}">{{ $produk->nama_produk }}</option>
+                                                <option value="{{ $produk->id_produk }}">
+                                                    {{ $produk->nama_produk }} - {{ $produk->kategori->nama_kategori ?? 'Kategori Tidak Tersedia' }}
+                                                </option>
                                             @endforeach
-                                        </select>
+                                        </select>                                        
                                     </div>
                                     <div class="form-group">
                                         <label for="deskripsi">Deskripsi</label>

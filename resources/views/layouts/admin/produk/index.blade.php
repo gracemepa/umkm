@@ -32,11 +32,12 @@
                                     <thead class="thead-dark">
                                         <tr>
                                             <th style="width: 5%;">No</th>
-                                            <th style="width: 25%;">Nama Produk</th>
+                                            <th style="width: 20%;">Nama Produk</th>
+                                            <th style="width: 15%;">Kategori</th> 
                                             <th style="width: 20%;">Harga Jual</th>
                                             <th style="width: 10%;">Stok</th>
-                                            <th style="width: 20%;">Gambar</th>
-                                            <th style="width: 15%;">Aksi</th>
+                                            <th style="width: 15%;">Gambar</th>
+                                            <th style="width: 20%;">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -44,6 +45,7 @@
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
                                                 <td>{{ $produk->nama_produk }}</td>
+                                                <td>{{ $produk->kategori ? $produk->kategori->nama_kategori : 'Kategori tidak tersedia' }}</td> <!-- Menampilkan kategori -->
                                                 <td>{{ number_format($produk->harga_jual, 0, ',', '.') }}</td>
                                                 <td>{{ $produk->stok }}</td>
                                                 <td>
@@ -70,7 +72,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="6" class="text-center">Tidak ada data produk.</td>
+                                                <td colspan="7" class="text-center">Tidak ada data produk.</td>
                                             </tr>
                                         @endforelse
                                     </tbody>

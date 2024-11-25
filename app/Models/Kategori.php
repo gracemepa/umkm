@@ -8,7 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Kategori extends Model
 {
     use HasFactory;
+
     protected $table = 'kategori';
     protected $primaryKey = 'id_kategori';
     protected $fillable = ['nama_kategori'];
+
+    /**
+     * Relasi ke model Produk
+     */
+    public function produk()
+    {
+        return $this->hasMany(Produk::class, 'id_kategori', 'id_kategori');
+    }
 }

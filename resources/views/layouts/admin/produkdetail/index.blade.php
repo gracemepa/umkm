@@ -42,7 +42,10 @@
                                         @forelse($produkdetails as $index => $produkdetail)
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
-                                                <td>{{ $produkdetail->produk->nama_produk }}</td>
+                                                <td>
+                                                    {{ $produkdetail->produk->nama_produk }} - 
+                                                    {{ $produkdetail->produk->kategori->nama_kategori ?? 'Kategori Tidak Tersedia' }}
+                                                </td>
                                                 <td>{{ $produkdetail->deskripsi }}</td>
                                                 <td>{{ $produkdetail->spesifikasi }}</td>
                                                 <td>
@@ -66,8 +69,7 @@
                                                 <td colspan="5" class="text-center">Tidak ada data detail produk.</td>
                                             </tr>
                                         @endforelse
-                                    </tbody>
-                                    
+                                    </tbody>                                    
                                 </table>
                             </div>
                         </div>

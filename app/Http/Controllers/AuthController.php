@@ -38,7 +38,7 @@ class AuthController extends Controller
                 return redirect()->route('admin.dashboard');
             } else {
                 // Arahkan ke dashboard user
-                return redirect()->route('user.dashboard');
+                return redirect()->route('user.index');
             }
         }
 

@@ -13,6 +13,6 @@ class KategoriUserController extends Controller
         $produks = Produk::all(); 
         $kategoris = Kategori::all(); 
 
-        return view('layouts.user.produk.index', compact('produks', 'kategoris'));
+        return view('layouts.user.index', compact('produks', 'kategoris'));
     }
 }

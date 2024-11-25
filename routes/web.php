@@ -38,7 +38,7 @@ Route::prefix('admin')->group(function () {
 
 
 Route::prefix('user')->middleware('auth')->group(function () {
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
+Route::get('/index', [ProdukUserController::class, 'index'])->name('user.index');
     
 });
 
@@ -85,12 +85,13 @@ Route::prefix('admin/barangmasuk')->controller(BarangmasukController::class)->gr
 
 // R O U T E S     U S E R
 
-Route::prefix('user/produk')->controller(ProdukUserController::class)->group(function () {
-    Route::get('index', 'index')->name('user.produk.index'); 
+Route::prefix('user')->controller(ProdukUserController::class)->group(function () {
+    Route::get('index', 'index')->name('user.index');
+    Route::get('category/{id}', 'filterByCategory')->name('user.filter'); // Menambahkan route filter produk berdasarkan kategori
 });
 
-Route::prefix('user/produk')->controller(KategoriUserController::class)->group(function () {
-    Route::get('index', 'index')->name('user.produk.index'); 
+Route::prefix('user')->controller(KategoriUserController::class)->group(function () {
+    Route::get('index', 'index')->name('user.index'); 
 });
 
-Route::get('user/produk/detail/{id_produk}', [ProdukdetailUserController::class, 'show'])->name('user.produk.detail');
+Route::get('user/detail/{id_produk}', [ProdukdetailUserController::class, 'show'])->name('user.detail');

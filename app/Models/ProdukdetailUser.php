@@ -2,21 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ProdukdetailUser extends Model
 {
-    use HasFactory;
+    protected $table = 'produkdetail';
+    protected $primaryKey = 'id_produkdetail';
 
-    protected $table = 'produkdetail'; 
-    protected $primaryKey = 'id_produkdetail'; 
-    protected $fillable = [
-        'id_produk', 'deskripsi', 'spesifikasi'
-    ];
-    public function produk()
+    public function produkuser()
     {
-    return $this->belongsTo(Produk::class, 'id_produk', 'id_produk');
+        return $this->belongsTo(Produkuser::class, 'id_produk', 'id_produk');
     }
-
 }
+

@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class KategoriUser extends Model
 {
-    use HasFactory;
     protected $table = 'kategori';
     protected $primaryKey = 'id_kategori';
-    protected $fillable = ['nama_kategori'];
+
+    public function produkuser()
+    {
+        return $this->hasMany(Produkuser::class, 'id_kategori', 'id_kategori');
+    }
 }
