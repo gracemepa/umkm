@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produk;
+use App\Models\Kategori;  // Import model Kategori
 use Illuminate\Http\Request;
 
 class ProdukController extends Controller
@@ -10,15 +11,18 @@ class ProdukController extends Controller
     public function index()
     {
         // Mengambil semua data produk
-        $produks = Produk::all();
+        $produks = Produk::with('kategori')->get();  // Mengambil data produk beserta kategori
         return view('layouts.admin.produk.index', compact('produks'));
     }
 
     public function create()
     {
-        // Menampilkan halaman tambah produk
+        // Mengambil semua kategori untuk ditampilkan di form
+        $kategoris = Kategori::all();
+
+        // Menampilkan halaman tambah produk dengan data kategori
         $data['title'] = 'Tambah Produk';
-        return view('layouts.admin.produk.create', $data);
+        return view('layouts.admin.produk.create', compact('kategoris', 'data'));
     }
 
     public function store(Request $request)
@@ -29,6 +33,7 @@ class ProdukController extends Controller
             'harga_jual' => 'required|numeric',
             'stok' => 'required|numeric',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240', // Validasi gambar
+            'id_kategori' => 'required|exists:kategori,id_kategori', // Validasi kategori
         ]);
 
         // Cek apakah ada file gambar yang diupload
@@ -40,9 +45,12 @@ class ProdukController extends Controller
             $validatedData['gambar'] = 'uploads/produk/' . $filename;
         }
 
+        // Menambahkan id_kategori pada data yang akan disimpan
+        $validatedData['id_kategori'] = $request->id_kategori;
+
         // Membuat produk baru dan menyimpannya ke database
         Produk::create($validatedData);
-        
+
         // Redirect ke halaman produk dengan pesan sukses
         return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil ditambahkan');
     }
@@ -57,8 +65,11 @@ class ProdukController extends Controller
             return redirect()->route('admin.produk.index')->with('error', 'Produk tidak ditemukan.');
         }
 
-        // Menampilkan halaman edit produk
-        return view('layouts.admin.produk.edit', compact('produk'));
+        // Mengambil semua kategori untuk ditampilkan di form edit
+        $kategoris = Kategori::all();
+
+        // Menampilkan halaman edit produk dengan data produk dan kategori
+        return view('layouts.admin.produk.edit', compact('produk', 'kategoris'));
     }
 
     public function update(Request $request, $id)
@@ -69,6 +80,7 @@ class ProdukController extends Controller
             'harga_jual' => 'required|numeric',
             'stok' => 'required|numeric',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240', // Validasi gambar
+            'id_kategori' => 'required|exists:kategori,id_kategori', // Validasi kategori
         ]);
 
         // Mengambil data produk berdasarkan ID
@@ -93,7 +105,8 @@ class ProdukController extends Controller
             }
         }
 
-        // Memperbarui data produk
+        // Memperbarui data produk dan menyimpan kategori yang dipilih
+        $validatedData['id_kategori'] = $request->id_kategori;
         $produk->update($validatedData);
 
         // Redirect ke halaman produk dengan pesan sukses

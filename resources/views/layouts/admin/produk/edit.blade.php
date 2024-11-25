@@ -40,6 +40,16 @@
                                         <input type="text" id="nama_produk" name="nama_produk" class="form-control" value="{{ $produk->nama_produk }}" required placeholder="Nama Produk">
                                     </div>
                                     <div class="form-group">
+                                        <label for="id_kategori">Kategori</label>
+                                        <select name="id_kategori" id="id_kategori" class="form-control" required>
+                                            @foreach ($kategoris as $kategori)
+                                                <option value="{{ $kategori->id_kategori }}" {{ $kategori->id_kategori == $produk->id_kategori ? 'selected' : '' }}>
+                                                    {{ $kategori->nama_kategori }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="harga_jual">Harga Jual (Rp)</label>
                                         <input type="number" id="harga_jual" name="harga_jual" class="form-control" value="{{ $produk->harga_jual }}" required placeholder="Harga Jual">
                                     </div>

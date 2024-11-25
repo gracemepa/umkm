@@ -31,6 +31,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             // Ambil data pengguna yang sedang login
             $user = Auth::user();
+
     
             // Periksa apakah email pengguna sudah diverifikasi
             if (!$user->email_verified_at) {
@@ -39,7 +40,7 @@ class AuthController extends Controller
                 return back()->withErrors([
                     'email' => 'Email Anda belum diverifikasi. Silakan cek email Anda untuk link verifikasi.',
                 ]);
-            }
+
     
             // Regenerasi sesi
             $request->session()->regenerate();
@@ -47,7 +48,7 @@ class AuthController extends Controller
             // Arahkan pengguna berdasarkan role
             return $user->role === 'owner'
                 ? redirect()->route('admin.dashboard')
-                : redirect()->route('user.dashboard');
+                : redirect()->route('user.index');
         }
     
         // Jika login gagal, kembali dengan pesan error
@@ -55,6 +56,7 @@ class AuthController extends Controller
             'username' => 'Kredensial yang Anda masukkan salah.',
         ]);
     }
+}
     
 
     // Menampilkan halaman registrasi

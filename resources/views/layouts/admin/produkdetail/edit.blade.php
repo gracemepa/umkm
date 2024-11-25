@@ -38,14 +38,13 @@
 
                                     <div class="form-group">
                                         <label for="id_produk">Product Name</label>
-                                        <select name="id_produk" id="id_produk" class="form-control rounded" required>
-                                            @foreach($produks as $produk)
-                                                <option value="{{ $produk->id_produk }}" 
-                                                    {{ $produkdetail->id_produk == $produk->id_produk ? 'selected' : '' }}>
-                                                    {{ $produk->nama_produk }}
+                                        <select id="id_produk" name="id_produk" class="form-control rounded" required>
+                                            @foreach ($produks as $produk)
+                                                <option value="{{ $produk->id_produk }}" {{ $produk->id_produk == $produkdetail->id_produk ? 'selected' : '' }}>
+                                                    {{ $produk->nama_produk }} - {{ $produk->kategori->nama_kategori ?? 'Kategori Tidak Tersedia' }}
                                                 </option>
                                             @endforeach
-                                        </select>
+                                        </select>                                        
                                     </div>
 
                                     <div class="form-group">

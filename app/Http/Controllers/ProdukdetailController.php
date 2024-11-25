@@ -8,19 +8,36 @@ use Illuminate\Http\Request;
 
 class ProdukdetailController extends Controller
 {
+    // public function index()
+    // {
+    //     $produkdetails = Produkdetail::with('produk')->get(); // Mengambil produk detail beserta relasinya dengan produk
+    //     $produks = Produk::all(); // Mengambil semua produk untuk form tambah produk detail
+    //     return view('layouts.admin.produkdetail.index', compact('produkdetails', 'produks'))
+    //         ->with('success', session('success')); // Kirim produkdetails, produks, dan pesan sukses
+    // }
+
+    // public function create()
+    // {
+    //     $produks = Produk::all();
+    //     return view('layouts.admin.produkdetail.create', compact('produks'));
+    // }
+
     public function index()
     {
-        $produkdetails = Produkdetail::with('produk')->get(); // Mengambil produk detail beserta relasinya dengan produk
-        $produks = Produk::all(); // Mengambil semua produk untuk form tambah produk detail
-        return view('layouts.admin.produkdetail.index', compact('produkdetails', 'produks'))
-            ->with('success', session('success')); // Kirim produkdetails, produks, dan pesan sukses
+    // Mengambil semua data produkdetail beserta produk dan kategori terkait
+    $produkdetails = Produkdetail::with(['produk.kategori'])->get();
+
+    return view('layouts.admin.produkdetail.index', compact('produkdetails'));
     }
 
     public function create()
     {
-        $produks = Produk::all();
+        // Mengambil data produk dengan kategori terkait
+        $produks = Produk::with('kategori')->get();
+    
         return view('layouts.admin.produkdetail.create', compact('produks'));
     }
+    
 
     public function store(Request $request)
     {

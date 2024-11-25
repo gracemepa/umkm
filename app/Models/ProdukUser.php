@@ -2,15 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProdukUser extends Model
+class Produkuser extends Model
 {
-    use HasFactory;
-    protected $table = 'produk'; 
-    protected $primaryKey = 'id_produk'; 
-    protected $fillable = [
-        'nama_produk', 'harga_jual', 'stok', 'gambar' 
-    ];
+    protected $table = 'produk';
+    protected $primaryKey = 'id_produk';
+
+    public function kategoriUser()
+    {
+        return $this->belongsTo(KategoriUser::class, 'id_kategori', 'id_kategori');
+    }
+
+    public function produkdetailUser()
+    {
+        return $this->hasMany(ProdukdetailUser::class, 'id_produk', 'id_produk');
+    }
 }
+
