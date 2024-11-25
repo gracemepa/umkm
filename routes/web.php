@@ -25,6 +25,14 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::get('register', 'register')->name('register');
     Route::post('register', 'register_process');
     Route::post('logout', 'logout')->name('logout');
+
+    Route::get('forgot-password', 'forgotPassword')->name('forgot-password.form'); // Form untuk forgot password
+    Route::post('forgot-password', 'sendResetLink')->name('password.email'); // Kirim email reset link
+
+    Route::get('reset-password/{token}', 'resetPasswordForm')->name('password.reset'); // Form reset password
+    Route::post('reset-password', 'resetPassword')->name('password.update'); // Proses reset password
+
+    Route::get('verify-email/{token}', 'verifyEmail')->name('verify.email');
 });
 
 Route::prefix('admin')->group(function () {

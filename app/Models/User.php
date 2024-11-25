@@ -15,7 +15,7 @@ class User extends Authenticatable
 
     // Atribut yang dapat diisi secara massal
     protected $fillable = [
-        'username', 'email', 'password', 'role','nama'
+        'username', 'email', 'password', 'role','nama', 'verification_token',
     ];
 
     // Atribut yang disembunyikan dalam serialisasi (misalnya ketika mengonversi model ke array)

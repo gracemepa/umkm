@@ -4,8 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
-    <meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
+    <meta name="description" content="Sistem Reset Password untuk Aplikasi.">
+    <meta name="keywords" content="reset password, aplikasi, sistem keamanan">
     <meta name="author" content="PIXINVENT">
     <title>{{ $title ?? '' }}</title>
     <link rel="apple-touch-icon" href="{{ asset('assets/images/ico/apple-icon-120.png') }}">
@@ -27,6 +27,8 @@
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('ts/css/style.css') }}">
     <!-- END Custom CSS-->
+    <script src="https://unpkg.com/feather-icons"></script>
+
   </head>
   <body class="vertical-layout vertical-menu-modern 1-column  bg-full-screen-image menu-expanded blank-page blank-page" data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
     <!-- ////////////////////////////////////////////////////////////////////////////-->
@@ -50,34 +52,16 @@
                 </div>
             @endif
             
-            <form action="{{ route('login.submit') }}" method="POST" class="form-horizontal">
+            <form action="{{ route('forgot-password.form') }}" method="POST" class="form-horizontal">
                 <fieldset class="form-group position-relative has-icon-left">
-                    <input type="text" name="username" class="form-control" id="user-name" placeholder="Your Username" required>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" required>
                     <div class="form-control-position">
                         <i class="ft-user"></i>
                     </div>
                 </fieldset>
-                <fieldset class="form-group position-relative has-icon-left">
-                    <input type="password" name="password" class="form-control" id="user-password" placeholder="Enter Password" required>
-                    <div class="form-control-position">
-                        <i class="la la-key"></i>
-                    </div>
-                </fieldset>
-                <div class="form-group row">
-                    <div class="col-md-6 col-12 text-center text-sm-left">
-                        <fieldset>
-                            <input type="checkbox" id="remember-me" class="chk-remember">
-                            <label for="remember-me"> Remember Me</label>
-                        </fieldset>
-                    </div>
-                    <div class="col-md-6 col-12 float-sm-left text-center text-sm-right"><a href="{{ route('forgot-password.form') }}" class="card-link">Forgot Password?</a></div>
-                </div>
                 @csrf
-                <button type="submit" class="btn btn-outline-info btn-block"><i class="ft-unlock"></i> Login</button>
+                <button type="submit" class="btn btn-outline-info btn-block"><i class="ft-unlock"></i>Kirim Link Reset Password</button>
             </form>
-                                <div class="card-body">
-                        <a href="{{ route('register') }}" class="btn btn-outline-danger btn-block"><i class="ft-user"></i> Register</a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -88,19 +72,12 @@
     </div>
     <!-- ////////////////////////////////////////////////////////////////////////////-->
 
-    <!-- BEGIN VENDOR JS-->
-    <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
-    <!-- BEGIN VENDOR JS-->
-    <!-- BEGIN PAGE VENDOR JS-->
-    <script src="../../../app-assets/vendors/js/forms/validation/jqBootstrapValidation.js"></script>
-    <script src="../../../app-assets/vendors/js/forms/icheck/icheck.min.js"></script>
-    <!-- END PAGE VENDOR JS-->
-    <!-- BEGIN MODERN JS-->
-    <script src="../../../app-assets/js/core/app-menu.js"></script>
-    <script src="../../../app-assets/js/core/app.js"></script>
-    <!-- END MODERN JS-->
-    <!-- BEGIN PAGE LEVEL JS-->
-    <script src="../../../app-assets/js/scripts/forms/form-login-register.js"></script>
-    <!-- END PAGE LEVEL JS-->
+    <script src="{{ asset('assets/vendors/js/vendors.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/js/forms/validation/jqBootstrapValidation.js') }}"></script>
+    <script src="{{ asset('assets/vendors/js/forms/icheck/icheck.min.js') }}"></script>
+    <script src="{{ asset('assets/js/core/app-menu.js') }}"></script>
+    <script src="{{ asset('assets/js/core/app.js') }}"></script>
+    <script src="{{ asset('assets/js/scripts/forms/form-login-register.js') }}"></script>
+    
   </body>
 </html>
