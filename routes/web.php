@@ -12,6 +12,7 @@ use App\Http\Controllers\ProdukdetailController;
 use App\Http\Controllers\ProdukUserController;
 use App\Http\Controllers\KategoriUserController;
 use App\Http\Controllers\ProdukdetailUserController;
+use App\Http\Controllers\CartController;
 
 // Route default dashboard setelah login
 Route::get('/', function () {
@@ -95,7 +96,7 @@ Route::prefix('admin/barangmasuk')->controller(BarangmasukController::class)->gr
 
 Route::prefix('user')->controller(ProdukUserController::class)->group(function () {
     Route::get('index', 'index')->name('user.index');
-    Route::get('category/{id}', 'filterByCategory')->name('user.filter'); // Menambahkan route filter produk berdasarkan kategori
+    Route::get('category/{id}', 'filterByCategory')->name('user.filter');
 });
 
 Route::prefix('user')->controller(KategoriUserController::class)->group(function () {
@@ -103,3 +104,16 @@ Route::prefix('user')->controller(KategoriUserController::class)->group(function
 });
 
 Route::get('user/detail/{id_produk}', [ProdukdetailUserController::class, 'show'])->name('user.detail');
+
+// B I N T A N G
+// Routes untuk Keranjang
+Route::prefix('user')->middleware('auth')->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('layouts.user.cart');
+    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+    Route::put('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('layouts.user.checkout');
+    Route::post('/cart/buy-now', [CartController::class, 'buyNow'])->name('cart.buyNow');
+});
+
+

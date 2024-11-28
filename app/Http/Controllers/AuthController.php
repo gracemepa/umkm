@@ -20,43 +20,53 @@ class AuthController extends Controller
     }
 
     public function login_process(Request $request)
-    {
-        // Validasi input
-        $credentials = $request->validate([
-            'username' => 'required',
-            'password' => 'required|min:6|max:12',
-        ]);
+{
+    // Validasi input
+    $credentials = $request->validate([
+        'username' => 'required',
+        'password' => 'required|min:6|max:12',
+    ]);
     
-        // Coba login dengan kredensial yang diberikan
-        if (Auth::attempt($credentials)) {
-            // Ambil data pengguna yang sedang login
-            $user = Auth::user();
+    // Coba login dengan kredensial yang diberikan
+    if (Auth::attempt($credentials)) {
+        // Ambil data pengguna yang sedang login
+        $user = Auth::user();
 
-    
-            // Periksa apakah email pengguna sudah diverifikasi
-            if (!$user->email_verified_at) {
-                // Logout dan kirim pesan error
-                Auth::logout();
-                return back()->withErrors([
-                    'email' => 'Email Anda belum diverifikasi. Silakan cek email Anda untuk link verifikasi.',
-                ]);
-
-    
-            // Regenerasi sesi
-            $request->session()->regenerate();
-    
-            // Arahkan pengguna berdasarkan role
-            return $user->role === 'owner'
-                ? redirect()->route('admin.dashboard')
-                : redirect()->route('user.index');
+        // Periksa apakah email pengguna sudah diverifikasi
+        if (!$user->email_verified_at) {
+            // Logout dan kirim pesan error
+            Auth::logout();
+            return back()->withErrors([
+                'email' => 'Email Anda belum diverifikasi. Silakan cek email Anda untuk link verifikasi.',
+            ]);
         }
+
+        // Regenerasi sesi
+        $request->session()->regenerate();
     
-        // Jika login gagal, kembali dengan pesan error
+        // Arahkan pengguna berdasarkan role
+        return $user->role === 'owner'
+            ? redirect()->route('admin.dashboard')
+            : redirect()->route('user.index');
+    }
+
+    // Jika login gagal, periksa apakah username atau password yang salah
+    $user = User::where('username', $request->username)->first();
+
+    if ($user && !Hash::check($request->password, $user->password)) {
+        // Password salah
         return back()->withErrors([
-            'username' => 'Kredensial yang Anda masukkan salah.',
+            'password' => 'Password yang Anda masukkan salah.',
         ]);
     }
+
+    // Jika username tidak ditemukan
+    return back()->withErrors([
+        'username' => 'Nama pengguna tidak ditemukan.',
+    ]);
 }
+
+
     
 
     // Menampilkan halaman registrasi
@@ -79,7 +89,7 @@ class AuthController extends Controller
     
         // Enkripsi password dan set role default
         $validatedData['password'] = Hash::make($validatedData['password']);
-        $validatedData['role'] = 'user'; // Default role user, bisa diganti menjadi 'admin' jika dibutuhkan
+        $validatedData['role'] = 'owner'; // Default role user, bisa diganti menjadi 'admin' jika dibutuhkan
         $validatedData['verification_token'] = Str::random(64);
         
         // Membuat pengguna baru
@@ -117,7 +127,6 @@ class AuthController extends Controller
     // Arahkan pengguna ke halaman login dengan pesan sukses
     return redirect()->route('login.form')->with('success', 'Email Anda berhasil diverifikasi. Silakan login.');
 }
-
 
     // Proses logout
     public function logout(Request $request)

@@ -32,4 +32,8 @@ class User extends Authenticatable
             'password' => 'hashed',  // Agar password di-hash dengan aman
         ];
     }
+    public function orders()
+{
+    return $this->hasMany(Order::class);
+}
 }

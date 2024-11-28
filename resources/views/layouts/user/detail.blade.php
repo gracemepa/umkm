@@ -6,7 +6,7 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-4">
-                    <h3 class="content-header-title text-primary font-weight-bold">Detail Produk</h3>
+                    <h3 class="content-header-title text-primary font-weight-bold" style="font-size: 2rem;">Detail Produk</h3>
                 </div>
             </div>
 
@@ -14,32 +14,32 @@
                 <div class="row justify-content-center">
                     <!-- Detail Produk -->
                     <div class="col-lg-10 col-md-12">
-                        <div class="card">
+                        <div class="card shadow-sm border-radius-10">
                             <div class="card-body">
                                 <div class="row">
                                     <!-- Gambar Produk -->
-                                    <div class="col-lg-4 col-md-6">
-                                        <div class="product-img d-flex align-items-center position-relative">
+                                    <div class="col-lg-4 col-md-6 mb-4">
+                                        <div class="product-img d-flex align-items-center justify-content-center position-relative">
                                             @if ($produk->diskon ?? false)
                                                 <div class="badge badge-success round position-absolute" style="top: 10px; left: 10px;">
                                                     -{{ $produk->diskon }}%
                                                 </div>
                                             @endif
-                                            <img class="img-fluid mb-1" 
+                                            <img class="img-fluid" 
                                                  src="{{ $produk->gambar ? asset($produk->gambar) : asset('assets/images/default.png') }}" 
                                                  alt="Gambar Produk" 
-                                                 style="max-width: 100%; height: auto; object-fit: contain;">
+                                                 style="max-width: 100%; height: auto; object-fit: contain; border-radius: 8px;">
                                         </div>
                                     </div>
 
                                     <!-- Detail Produk -->
                                     <div class="col-lg-8 col-md-6">
-                                        <div class="title-area clearfix">
-                                            <h2 class="product-title float-left" style="font-size: 1.8rem; font-weight: bold;">
+                                        <div class="title-area clearfix mb-3">
+                                            <h2 class="product-title text-dark font-weight-bold" style="font-size: 2rem;">
                                                 {{ $produk->nama_produk ?? 'Nama Produk Tidak Tersedia' }}
                                             </h2>
                                         </div>
-                                        <div class="price-reviews clearfix mb-3">
+                                        <div class="price-reviews clearfix mb-4">
                                             <span class="price-box">
                                                 <span class="price h4" style="color: #007bff;">
                                                     Rp {{ number_format($produk->harga_jual ?? 0, 0, ',', '.') }}
@@ -57,24 +57,47 @@
                                             <p>{{ $produkDetail->spesifikasi ?? 'Spesifikasi tidak tersedia.' }}</p>
                                         </div>
 
-                                        <div class="category-info">
+                                        <div class="category-info mb-4">
                                             @if (!empty($produk->kategoriUser))
                                                 <p><strong>Kategori:</strong> {{ $produk->kategoriUser->nama_kategori }}</p>
                                             @else
                                                 <p><strong>Kategori:</strong> Tidak tersedia</p>
                                             @endif
                                         </div>
-
                                         <!-- Tombol Aksi -->
                                         <div class="row">
                                             <div class="col-xl-5 col-lg-5 col-md-12">
                                                 <div class="product-buttons d-flex">
-                                                    <a href="#" class="btn btn-danger btn-sm mr-2">
+                                                    <!-- Tombol Tambah ke Keranjang -->
+                                                    <a href="{{ route('cart.add', ['produk_id' => $produk->id_produk]) }}" 
+                                                    class="btn btn-danger btn-sm mr-2"
+                                                    onclick="event.preventDefault(); document.getElementById('add-to-cart-{{ $produk->id_produk }}').submit();">
                                                         <i class="la la-shopping-cart"></i> Tambah ke Keranjang
                                                     </a>
-                                                    <a href="#" class="btn btn-info btn-sm">
+                                                    <!-- Form Tambah ke Keranjang -->
+                                                    <form id="add-to-cart-{{ $produk->id_produk }}" 
+                                                        action="{{ route('cart.add') }}" 
+                                                        method="POST" 
+                                                        style="display: none;">
+                                                        @csrf
+                                                        <input type="hidden" name="produk_id" value="{{ $produk->id_produk }}">
+                                                    </form>
+
+                                                    <!-- Tombol Beli Sekarang -->
+                                                    <a href="#" 
+                                                    class="btn btn-info btn-sm"
+                                                    onclick="event.preventDefault(); document.getElementById('buy-now-{{ $produk->id_produk }}').submit();">
                                                         <i class="la la-flash"></i> Beli Sekarang
                                                     </a>
+                                                    {{-- <!-- Form Beli Sekarang -->
+                                                    <form id="buy-now-{{ $produk->id_produk }}" 
+                                                        action="{{ route('cart.buyNow') }}" 
+                                                        method="POST" 
+                                                        style="display: none;">
+                                                        @csrf
+                                                        <input type="hidden" name="produk_id" value="{{ $produk->id_produk }}">
+                                                        <input type="hidden" name="quantity" value="1">
+                                                    </form> --}}
                                                 </div>
                                             </div>
                                         </div>

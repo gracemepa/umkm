@@ -9,12 +9,22 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+//     public function up()
+// {
+//     Schema::table('barangmasuk', function (Blueprint $table) {
+//         $table->string('nama_barang')->nullable()->after('id_supplier');
+//     });
+// }
+
+public function up()
 {
-    Schema::table('barangmasuk', function (Blueprint $table) {
-        $table->string('nama_barang')->nullable()->after('id_supplier');
-    });
+    if (!Schema::hasColumn('barangmasuk', 'nama_barang')) {
+        Schema::table('barangmasuk', function (Blueprint $table) {
+            $table->string('nama_barang')->nullable()->after('id_supplier');
+        });
+    }
 }
+
 
 public function down()
 {
