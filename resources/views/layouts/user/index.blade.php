@@ -24,15 +24,17 @@
                                     </div>
                                     <div class="product-cat" id="categories">
                                         <ul class="treeview">
-                                            @forelse($kategoris as $kategori)
-                                                <li>
-                                                    <a href="{{ route('user.filter', $kategori->id_kategori) }}" class="text-dark" style="font-size: 1.1rem; padding: 5px 0; display: block;">
-                                                        {{ $kategori->nama_kategori }}
-                                                    </a>
-                                                </li>
-                                            @empty
-                                                <li><span>Tidak ada kategori</span></li>
-                                            @endforelse
+                                            @foreach($kategoris as $kategori)
+                                            <li>
+                                                <a href="{{ route('user.filter', $kategori->id_kategori) }}" class="text-dark" style="font-size: 1.1rem; padding: 5px 0; display: block;">
+                                                    <!-- Menampilkan gambar kategori berbentuk bulat -->
+                                                    <img src="{{ $kategori->gambar ? asset($kategori->gambar) : asset('assets/images/default.png') }}" 
+                                                         alt="{{ $kategori->nama_kategori }}" 
+                                                         style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%; margin-right: 10px;">
+                                                    {{ $kategori->nama_kategori }}
+                                                </a>
+                                            </li>
+                                        @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -57,10 +59,10 @@
                                                     alt="Gambar Produk" 
                                                     style="width: 100%; height: 200px; object-fit: contain; border-radius: 8px;">
                                             </div>
-                                            
-                                            <!-- Menampilkan nama produk -->
+                                             <!-- Menampilkan nama produk -->
                                             <h4 class="product-title text-dark font-weight-bold mb-2">{{ $produk->nama_produk }}</h4>
                                             
+
                                             <div class="price-reviews mb-3">
                                                 <span class="price-box">
                                                     <span class="price text-primary" style="font-size: 1.2rem;">
@@ -74,13 +76,13 @@
                                             <!-- Aksi Produk -->
                                             <div class="mt-auto">
                                                 <!-- Tombol Lihat Detail -->
-                                                <a href="{{ route('user.detail', $produk->id_produk) }}"
+                                                <a href="{{ route('user.detail', $produk->id_produk) }} "
                                                     class="btn btn-outline-primary btn-block mb-3" style="font-size: 1rem;">
                                                     <i class="ft-eye"></i> Lihat Detail
                                                 </a>
 
                                                 <!-- Tombol Tambah ke Keranjang -->
-                                                <a href="{{ route('cart.add', ['produk_id' => $produk->id_produk]) }}"
+                                                <a href="#"
                                                     class="btn btn-success btn-block" 
                                                     onclick="event.preventDefault(); document.getElementById('add-to-cart-{{ $produk->id_produk }}').submit();" style="font-size: 1rem;">
                                                     <i class="la la-shopping-cart"></i> Tambah ke Keranjang
@@ -88,7 +90,7 @@
 
                                                 <!-- Form Tambah ke Keranjang (tersembunyi) -->
                                                 <form id="add-to-cart-{{ $produk->id_produk }}" 
-                                                    action="{{ route('cart.add') }}" 
+                                                    action="#" 
                                                     method="POST" 
                                                     style="display: none;">
                                                     @csrf

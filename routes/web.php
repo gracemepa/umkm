@@ -68,7 +68,10 @@ Route::prefix('admin/produk')->controller(ProdukController::class)->group(functi
     Route::post('store',        'store')->name('admin.produk.store');
     Route::get('edit/{id}',     'edit')->name('admin.produk.edit');
     Route::put('update/{id}',   'update')->name('admin.produk.update');
-    Route::delete('delete/{id}', 'delete')->name('admin.produk.delete'); // Changed to DELETE
+    Route::delete('delete/{id}', 'delete')->name('admin.produk.delete'); 
+    Route::get('search', 'search')->name('admin.produk.search');
+    Route::get('export', 'export')->name('admin.produk.export');
+
 });
 
 Route::prefix('admin/produkdetail')->controller(ProdukdetailController::class)->group(function () {
@@ -88,6 +91,7 @@ Route::prefix('admin/barangmasuk')->controller(BarangmasukController::class)->gr
     Route::get('edit/{id}', 'edit')->name('admin.barangmasuk.edit');
     Route::put('update/{id}', 'update')->name('admin.barangmasuk.update');
     Route::delete('delete/{id}', 'delete')->name('admin.barangmasuk.delete');
+    Route::get('export', 'export')->name('admin.barangmasuk.export');
 });
 
 
@@ -107,13 +111,21 @@ Route::get('user/detail/{id_produk}', [ProdukdetailUserController::class, 'show'
 
 // B I N T A N G
 // Routes untuk Keranjang
-Route::prefix('user')->middleware('auth')->group(function () {
-    Route::get('/cart', [CartController::class, 'index'])->name('layouts.user.cart');
-    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
-    Route::put('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
-    Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
-    Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('layouts.user.checkout');
-    Route::post('/cart/buy-now', [CartController::class, 'buyNow'])->name('cart.buyNow');
-});
+// Route::prefix('user')->middleware('auth')->group(function () {
+//     Route::get('/cart', [CartController::class, 'index'])->name('layouts.user.cart');
+//     Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+//     Route::put('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+//     Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+//     Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('layouts.user.checkout');
+//     Route::post('/cart/buy-now', [CartController::class, 'buyNow'])->name('cart.buyNow');
+//     Route::post('/cart/bulk-action', [CartController::class, 'bulkAction'])->name('cart.bulkAction');
+//     Route::put('user/cart/bulk-action', [CartController::class, 'bulkAction'])->name('cart.bulkAction');
 
 
+// });
+
+// // Route untuk menampilkan halaman checkout
+// Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+
+// // Route untuk memproses pembayaran
+// Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');

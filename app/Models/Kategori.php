@@ -11,11 +11,10 @@ class Kategori extends Model
 
     protected $table = 'kategori';
     protected $primaryKey = 'id_kategori';
-    protected $fillable = ['nama_kategori'];
+    protected $fillable = ['nama_kategori', 'gambar']; 
 
-    /**
-     * Relasi ke model Produk
-     */
+    
+    // Relasi ke model Produk
     public function produk()
     {
         return $this->hasMany(Produk::class, 'id_kategori', 'id_kategori');

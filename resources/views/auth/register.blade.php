@@ -35,7 +35,7 @@
                   <div class="card-header border-0 text-center">
                     <!-- Syailendra Logo -->
                     <img src="{{ asset('assets/images/logo.jpg') }}" alt="Syailendra App Logo" class="login-logo mb-3" style="max-width: 120px;">
-                    <h4 class="text-primary font-weight-bold" style="font-size: 24px; margin-top: 15px;">Sign In to Get Started</h4>
+                    <h4 class="text-primary font-weight-bold" style="font-size: 24px; margin-top: 15px;">Register</h4>
                   </div>
                 <div class="card-content">
                     <div class="card-body">

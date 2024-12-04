@@ -69,19 +69,19 @@
                                             <div class="col-xl-5 col-lg-5 col-md-12">
                                                 <div class="product-buttons d-flex">
                                                     <!-- Tombol Tambah ke Keranjang -->
-                                                    <a href="{{ route('cart.add', ['produk_id' => $produk->id_produk]) }}" 
+                                                    <a href="#" 
                                                     class="btn btn-danger btn-sm mr-2"
                                                     onclick="event.preventDefault(); document.getElementById('add-to-cart-{{ $produk->id_produk }}').submit();">
                                                         <i class="la la-shopping-cart"></i> Tambah ke Keranjang
                                                     </a>
-                                                    <!-- Form Tambah ke Keranjang -->
+                                                    {{-- <!-- Form Tambah ke Keranjang -->
                                                     <form id="add-to-cart-{{ $produk->id_produk }}" 
                                                         action="{{ route('cart.add') }}" 
                                                         method="POST" 
                                                         style="display: none;">
                                                         @csrf
                                                         <input type="hidden" name="produk_id" value="{{ $produk->id_produk }}">
-                                                    </form>
+                                                    </form> --}}
 
                                                     <!-- Tombol Beli Sekarang -->
                                                     <a href="#" 

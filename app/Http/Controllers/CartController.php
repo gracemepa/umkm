@@ -122,21 +122,23 @@ class CartController extends Controller
         if (!$produk) {
             return redirect()->back()->with('error', 'Produk tidak ditemukan.');
         }
-
-        // // Simpan detail pesanan ke database
-        // $order = Order::create([
-        //     'user_id' => auth()->id(),
-        //     'total' => $produk->harga_jual * $request->quantity,
-        // ]);
-
-        // // Tambahkan produk ke order items
-        // $order->orderItems()->create([
-        //     'product_id' => $produk->id,
-        //     'quantity' => $request->quantity,
-        //     'price' => $produk->harga_jual,
-        // ]);
-
-        // Redirect ke halaman sukses atau checkout
-        return redirect()->route('checkout.index')->with('success', 'Produk berhasil dibeli!');
     }
 }
+
+//         // Simpan detail pesanan ke database
+//         $order = Order::create([
+//             'user_id' => auth()->id(),
+//             'total' => $produk->harga_jual * $request->quantity,
+//         ]);
+
+//         // Tambahkan produk ke order items
+//         $order->orderItems()->create([
+//             'product_id' => $produk->id,
+//             'quantity' => $request->quantity,
+//             'price' => $produk->harga_jual,
+//         ]);
+
+//         // Redirect ke halaman sukses atau checkout
+//         return redirect()->route('checkout.index')->with('success', 'Produk berhasil dibeli!');
+//     }
+// }

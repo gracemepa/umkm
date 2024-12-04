@@ -21,6 +21,7 @@
                     <h3 class="content-header-title">Edit Kategori</h3>
                 </div>
             </div>
+
             <div class="content-body">
                 <!-- Kategori Form -->
                 <div class="row">
@@ -30,18 +31,30 @@
                                 <h4 class="card-title">Edit Informasi Kategori</h4>
                             </div>
                             <div class="card-body">
-                                @if(session('success'))
-                                    <div class="alert alert-success">
-                                        {{ session('success') }}
-                                    </div>
-                                @endif
-                                <form action="{{ route('admin.kategori.update', $kategori->id_kategori) }}" method="POST">
+                                <!-- Form untuk mengupdate kategori -->
+                                <form action="{{ route('admin.kategori.update', $kategori->id_kategori) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
-                                    @method('PUT') <!-- Menggunakan method PUT untuk update -->
+                                    @method('PUT') <!-- Gunakan PUT karena kita melakukan update -->
+                                    
                                     <div class="form-group">
                                         <label for="nama_kategori">Nama Kategori</label>
-                                        <input type="text" id="nama_kategori" name="nama_kategori" class="form-control" value="{{ old('nama_kategori', $kategori->nama_kategori) }}" required>
+                                        <input type="text" id="nama_kategori" name="nama_kategori" class="form-control" value="{{ $kategori->nama_kategori }}" required placeholder="Nama Kategori">
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="gambar">Gambar Kategori</label>
+                                        <input type="file" id="gambar" name="gambar" class="form-control">
+                                        
+                                        @if ($kategori->gambar)
+                                            <div class="mt-2">
+                                                <label>Gambar saat ini:</label>
+                                                <img src="{{ asset($kategori->gambar) }}" alt="Gambar Kategori" style="width: 100px; height: 100px; object-fit: cover;">
+                                            </div>
+                                        @else
+                                            <p>Tidak ada gambar saat ini.</p>
+                                        @endif
+                                    </div>
+
                                     <div class="form-group text-right">
                                         <button type="submit" class="btn btn-success btn-primary">
                                             <i class="fa fa-save"></i> Update Kategori
