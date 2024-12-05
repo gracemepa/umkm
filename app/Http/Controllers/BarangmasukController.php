@@ -44,7 +44,7 @@ class BarangmasukController extends Controller
         $barangMasuk = Barangmasuk::create($validatedData);
     
         Activity::create([                       // Pencatatan aktivitas admin
-            'description' => "Barang masuk baru ditambahkan: " . $barangMasuk->nama_barang
+            'description' => "Barang masukgthternr ditambahkan: " . $barangMasuk->nama_barang
         ]);
         return redirect()->route('admin.barangmasuk.index')->with('success', 'Barang masuk berhasil ditambahkan');
     }

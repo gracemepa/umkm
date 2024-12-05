@@ -163,25 +163,29 @@
           </div>
         </div>
 
-        <!-- Pencarian Produk dan Barang Masuk dan Export -->
-        <div class="row mb-3">
-          <div class="col-md-6">
-            <form action="{{ route('admin.produk.search') }}" method="GET" class="d-flex">
-              <input type="text" name="search" class="form-control" placeholder="Cari produk...">
-              <button type="submit" class="btn btn-primary ml-2">Cari</button>
-            </form>
-          </div>
-          <div class="col-md-6 text-right">
-            <div class="btn-group">
-              <a href="{{ route('admin.produk.export') }}" class="btn btn-success">
-                Export Produk ke CSV
-              </a>
-              <a href="{{ route('admin.barangmasuk.export') }}" class="btn btn-warning">
-                Export Barang Masuk ke CSV
-              </a>
+            <!-- Pencarian Produk dan Barang Masuk dan Export -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <form action="{{ route('admin.produk.search') }}" method="GET" class="d-flex">
+                  <input type="text" name="search" class="form-control" placeholder="Cari produk...">
+                  <button type="submit" class="btn btn-primary ml-2">Cari</button>
+                </form>
+              </div>
+              <div class="col-md-6 text-right">
+                <div class="btn-group">
+                  <a href="{{ route('admin.produk.export') }}" class="btn btn-success">
+                    Export Produk ke CSV
+                  </a>
+                  <a href="{{ route('admin.barangmasuk.export') }}" class="btn btn-warning">
+                    Export Barang Masuk ke CSV
+                  </a>
+                  <a href="{{ route('laporan.export.pdf') }}" class="btn btn-danger">
+                    Cetak Laporan PDF
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+
 
       </div>
     </div>

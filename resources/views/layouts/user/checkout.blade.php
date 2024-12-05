@@ -14,63 +14,67 @@
                 </p>
             </div>
         </div>
-    </div>
-</div>
 
-    @if(session('cart') && count(session('cart')) > 0)
-    <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Gambar</th>
-                    <th scope="col">Produk</th>
-                    <th scope="col">Jumlah</th>
-                    <th scope="col">Subtotal</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach(session('cart') as $id => $details)
-                <tr>
-                    <!-- Gambar Produk -->
-                    <td style="width: 120px; text-align: center;">
-                        <img src="{{ asset($details['image'] ?? 'assets/images/products/default.jpg') }}" 
-                             alt="Gambar Produk" 
-                             style="width: 100px; height: auto; border-radius: 8px;">
-                    </td>
-                    <!-- Nama Produk -->
-                    <td>{{ $details['name'] }}</td>
-                    <!-- Jumlah Produk -->
-                    <td>
-                        <div class="input-group" style="max-width: 120px;">
-                            <input type="text" class="form-control text-center" value="{{ $details['quantity'] }}" readonly>
-                        </div>
-                    </td>
-                    <!-- Subtotal -->
-                    <td>Rp {{ number_format($details['price'] * $details['quantity'], 0, ',', '.') }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-            <!-- Total Keseluruhan -->
-            <tfoot>
-                <tr>
-                    <th colspan="3" class="text-right">Total:</th>
-                    <th>Rp {{ number_format(array_sum(array_map(function($item) { return $item['price'] * $item['quantity']; }, session('cart'))), 0, ',', '.') }}</th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-
+        @if(session('cart') && count(session('cart')) > 0)
+        <!-- Tabel Keranjang -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Gambar</th>
+                        <th scope="col">Produk</th>
+                        <th scope="col">Jumlah</th>
+                        <th scope="col">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(session('cart') as $id => $details)
+                    <tr>
+                        <!-- Gambar Produk -->
+                        <td style="width: 120px; text-align: center;">
+                            <img src="{{ asset($details['image'] ?? 'assets/images/products/default.jpg') }}" 
+                                 alt="Gambar Produk" 
+                                 style="width: 100px; height: auto; border-radius: 8px;">
+                        </td>
+                        <!-- Nama Produk -->
+                        <td>{{ $details['name'] }}</td>
+                        <!-- Jumlah Produk -->
+                        <td>
+                            <div class="input-group" style="max-width: 120px;">
+                                <input type="text" class="form-control text-center" value="{{ $details['quantity'] }}" readonly>
+                            </div>
+                        </td>
+                        <!-- Subtotal -->
+                        <td>Rp {{ number_format($details['price'] * $details['quantity'], 0, ',', '.') }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+                <!-- Total Keseluruhan -->
+                <tfoot>
+                    <tr>
+                        <th colspan="3" class="text-right">Total:</th>
+                        <th>Rp {{ number_format(array_sum(array_map(function($item) { 
+                            return $item['price'] * $item['quantity']; 
+                        }, session('cart'))), 0, ',', '.') }}</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
 
         <!-- Tombol Bayar -->
         <div class="text-right mt-4">
-            <form action="{{ route('cart.buyNow') }}" method="POST">
-                @csrf
+            <form action="{{ route('checkout.payment') }}" method="GET">
                 <button type="submit" class="btn btn-success btn-lg">Bayar Sekarang</button>
             </form>
+        </div>              
+        @else
+        <!-- Keranjang Kosong -->
+        <div class="text-center my-5">
+            <p class="text-muted" style="font-size: 1.2rem;">Keranjang Anda kosong. 
+                <a href="{{ route('user.index') }}" class="text-primary font-weight-bold">Belanja sekarang</a>.
+            </p>
         </div>
-
-    @else
-    <p class="text-center">Keranjang Anda kosong. <a href="{{ route('user.index') }}">Belanja sekarang</a>.</p>
-    @endif
+        @endif
+    </div>
 </div>
 @endsection

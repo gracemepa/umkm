@@ -11,6 +11,11 @@
     <link rel="apple-touch-icon" href="{{ asset('assets/images/logo.jpg') }}">
     <link rel="shortcut icon" href="{{ asset('assets/images/logo.jpg') }}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CQuicksand:300,400,500,700" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
     <!-- Vendor CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/vendors.css') }}">

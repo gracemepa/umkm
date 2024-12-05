@@ -38,7 +38,7 @@ class CartController extends Controller
         // Simpan kembali keranjang ke dalam session
         session()->put('cart', $cart);
 
-        return redirect()->route('layouts.user.cart')->with('success', 'Produk berhasil ditambahkan ke keranjang!');
+        return redirect()->route('user.cart')->with('success', 'Produk berhasil ditambahkan ke keranjang!');
     }
 
     // Tampilkan halaman keranjang
@@ -68,30 +68,32 @@ class CartController extends Controller
         return redirect()->route('layouts.user.cart')->with('success', 'Produk berhasil dihapus dari keranjang.');
     }
 
-    // Perbarui jumlah produk di keranjang
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'action' => 'required|in:increase,decrease',
-        ]);
-
-        // Ambil data keranjang dari session
-        $cart = session()->get('cart', []);
-
-        // Periksa apakah produk ada di keranjang
-        if (isset($cart[$id])) {
-            if ($request->action === 'increase') {
-                $cart[$id]['quantity']++;
-            } elseif ($request->action === 'decrease' && $cart[$id]['quantity'] > 1) {
-                $cart[$id]['quantity']--;
-            }
+        // Ambil keranjang dari session
+        $cart = session('cart', []);
+    
+        // Pastikan item ada di dalam keranjang
+        if (!isset($cart[$id])) {
+            return redirect()->back()->with('error', 'Produk tidak ditemukan di keranjang.');
         }
-
-        // Simpan kembali keranjang ke session
-        session()->put('cart', $cart);
-
-        return redirect()->route('layouts.user.cart')->with('success', 'Keranjang berhasil diperbarui.');
+    
+        // Ambil tindakan (increase/decrease) dari form
+        $action = $request->input('action');
+        if ($action === 'increase') {
+            // Tambah jumlah
+            $cart[$id]['quantity'] += 1;
+        } elseif ($action === 'decrease') {
+            // Kurangi jumlah, tapi pastikan tidak kurang dari 1
+            $cart[$id]['quantity'] = max(1, $cart[$id]['quantity'] - 1);
+        }
+    
+        // Update keranjang di session
+        session(['cart' => $cart]);
+    
+        return redirect()->back()->with('success', 'Jumlah barang berhasil diperbarui.');
     }
+       
 
     // Checkout produk di keranjang
     public function checkout()
@@ -108,21 +110,57 @@ class CartController extends Controller
         return view('layouts.user.checkout', compact('cart'));
     }
 
-    // Fungsi Buy Now
     public function buyNow(Request $request)
     {
-        $request->validate([
-            'produk_id' => 'required|exists:produks,id',
-            'quantity' => 'required|integer|min:1',
-        ]);
-
-        // Ambil data produk berdasarkan ID
-        $produk = Produk::find($request->produk_id);
-
-        if (!$produk) {
-            return redirect()->back()->with('error', 'Produk tidak ditemukan.');
+        // Cek apakah keranjang kosong
+        $cart = session()->get('cart', []);
+        if (empty($cart)) {
+            return redirect()->route('user.cart')->with('error', 'Keranjang Anda kosong.');
         }
+    
+        // Di sini Anda bisa menambahkan logika untuk memproses pembelian, seperti membuat pesanan atau mengarahkan ke halaman pembayaran
+    
+        // Contoh: Membuat order baru (simulasi)
+        $totalAmount = array_sum(array_map(function($item) {
+            return $item['price'] * $item['quantity'];
+        }, $cart));
+    
+        // Simpan transaksi atau buat pesanan (misalnya, menyimpan ke database)
+        // Order::create([
+        //     'user_id' => auth()->id(),
+        //     'total_amount' => $totalAmount,
+        //     'status' => 'pending',
+        // ]);
+    
+        // Hapus keranjang setelah pembelian
+        session()->forget('cart');
+    
+        // Alihkan ke halaman konfirmasi atau pembayaran
+        return redirect()->route('user.payment')->with('success', 'Pembelian berhasil! Total: Rp ' . number_format($totalAmount, 0, ',', '.'));
     }
+    
+    public function bulkAction(Request $request)
+{
+    // Validate the incoming request for bulk actions
+    $request->validate([
+        'items' => 'required|array',  // Items is an array of product ids
+        'items.*' => 'exists:produks,id', // Make sure each item exists in the Produk table
+    ]);
+
+    // Get the cart from the session
+    $cart = session()->get('cart', []);
+
+    // Perform bulk action, for example, remove selected items
+    foreach ($request->items as $itemId) {
+        unset($cart[$itemId]); // Remove each item from the cart
+    }
+
+    // Update the session with the modified cart
+    session()->put('cart', $cart);
+
+    return redirect()->route('user.cart')->with('success', 'Bulk action completed successfully.');
+}
+
 }
 
 //         // Simpan detail pesanan ke database

@@ -10,7 +10,7 @@ class ProdukUserController extends Controller
     public function index()
     {
         // Menampilkan semua produk
-        $produks = Produkuser::with('kategoriUser')->get();
+        $barangmasuk = Produkuser::with('kategoriUser')->get();
         $kategoris = KategoriUser::all(); // Menampilkan daftar kategori
         return view('layouts.user.index', compact('produks', 'kategoris'));
     }

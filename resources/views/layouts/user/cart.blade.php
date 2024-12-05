@@ -59,7 +59,7 @@
         </table>
         <div class="text-right">
             <button type="submit" name="action" value="delete" class="btn btn-danger">Hapus yang Dipilih</button>
-            <a href="{{ route('layouts.user.checkout') }}" class="btn btn-primary">Checkout</a>
+            <a href="{{ route('user.checkout') }}" class="btn btn-primary">Checkout</a>
         </div>
     </form>
     @else
@@ -77,7 +77,3 @@
     }
 </script>
 @endsection
-
-
-
-

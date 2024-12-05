@@ -1,10 +1,9 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCartTable extends Migration
+class RenameProductIdToIdProdukInCarts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +12,9 @@ class CreateCartTable extends Migration
      */
     public function up()
     {
-        Schema::create('carts', function (Blueprint $table) {
-            $table->id(); // Kolom primary key untuk tabel carts
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Relasi ke tabel users
-            $table->unsignedBigInteger('product_id'); // Kolom relasi ke tabel produk
-
-            // Definisikan foreign key secara manual
-            $table->foreign('product_id')->references('id_produk')->on('produk')->onDelete('cascade');
-            
-            $table->integer('quantity')->default(1); // Kolom jumlah barang
-            $table->timestamps(); // Kolom created_at dan updated_at
+        Schema::table('carts', function (Blueprint $table) {
+            // Mengubah nama kolom product_id menjadi id_produk
+            $table->renameColumn('product_id', 'id_produk');
         });
     }
 
@@ -33,6 +25,9 @@ class CreateCartTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carts'); // Menghapus tabel carts
+        Schema::table('carts', function (Blueprint $table) {
+            // Membalikkan perubahan jika rollback
+            $table->renameColumn('id_produk', 'product_id');
+        });
     }
 }

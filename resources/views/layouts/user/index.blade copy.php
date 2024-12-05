@@ -91,6 +91,7 @@
                                                 </span>
                                             </div>
                                             
+
                                             <p class="text-muted">Stok: {{ $produk->stok }}</p>
 
                                             <!-- Aksi Produk -->
@@ -102,16 +103,15 @@
                                                 </a>
 
                                                 <!-- Tombol Tambah ke Keranjang -->
-                                                <a href="{{ route('user.cart') }}"
-                                                class="btn btn-success btn-block" 
-                                                onclick="event.preventDefault(); document.getElementById('add-to-cart-{{ $produk->id_produk }}').submit();" style="font-size: 1rem;">
-                                                <i class="la la-shopping-cart"></i> Tambah ke Keranjang
-                                            </a>
-                                            
+                                                <a href="{{ route('cart.add', $produk->id_produk) }} "
+                                                    class="btn btn-success btn-block" 
+                                                    onclick="event.preventDefault(); document.getElementById('add-to-cart-{{ $produk->id_produk }}').submit();" style="font-size: 1rem;">
+                                                    <i class="la la-shopping-cart"></i> Tambah ke Keranjang
+                                                </a>
 
                                                 <!-- Form Tambah ke Keranjang (tersembunyi) -->
                                                 <form id="add-to-cart-{{ $produk->id_produk }}" 
-                                                    action="{{ route('cart.add')}}" 
+                                                    action="{{ route('cart.add', $produk->id_produk) }} "
                                                     method="POST" 
                                                     style="display: none;">
                                                     @csrf
